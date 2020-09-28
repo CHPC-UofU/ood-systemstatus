@@ -1,6 +1,6 @@
 class SlurmSqueueClient
 
-  attr_reader :active_jobs, :eligible_jobs, :blocked_jobs, :procs_used, :procs_avail, :nodes_used, :nodes_avail, :error_message, :dashboard_url, :cluster_id, :cluster_title, :friendly_error_message, :owner_nodes_used, :owner_nodes_avail, :owner_nodes_idle, :nodes_idle, :nodes_other, :procs_idle, :procs_other, :owner_procs_used, :owner_procs_idle, :owner_procs_avail
+  attr_reader :active_jobs, :eligible_jobs, :blocked_jobs, :procs_used, :procs_avail, :nodes_used, :nodes_avail, :error_message, :dashboard_url, :cluster_id, :cluster_title, :friendly_error_message, :owner_nodes_used, :owner_nodes_avail, :owner_nodes_idle, :nodes_idle, :nodes_other, :procs_idle, :procs_other, :owner_procs_used, :owner_procs_idle, :owner_procs_avail, :owner_procs_other, :owner_nodes_other
 
   # Set the object to the server.
   #
@@ -367,9 +367,11 @@ class SlurmSqueueClient
     self.owner_nodes_used = cluster_info[:owner_nodes_used]
     self.owner_nodes_idle = cluster_info[:owner_nodes_idle]
     self.owner_nodes_avail = cluster_info[:owner_nodes_avail]
+    self.owner_nodes_other = cluster_info[:owner_nodes_other]
     self.owner_procs_used = cluster_info[:owner_procs_used]
     self.owner_procs_idle = cluster_info[:owner_procs_idle]
     self.owner_procs_avail = cluster_info[:owner_procs_avail]
+    self.owner_procs_other = cluster_info[:owner_procs_other]
 #    File.write("/uufs/chpc.utah.edu/common/home/u0101881/ondemand/dev/osc-systemstatus/log.txt", "#{cluster_info[:owner_nodes_used]}\n", mode: "a")
 
     self
@@ -450,7 +452,7 @@ class SlurmSqueueClient
 
   private
 
-    attr_writer :active_jobs, :eligible_jobs, :blocked_jobs, :procs_used, :procs_avail, :nodes_used, :nodes_avail,:error_message, :cluster_id, :cluster_title, :nodes_idle, :owner_nodes_used, :owner_nodes_idle, :owner_nodes_avail, :nodes_other, :procs_idle, :procs_other, :owner_procs_used, :owner_procs_idle, :owner_procs_avail
+    attr_writer :active_jobs, :eligible_jobs, :blocked_jobs, :procs_used, :procs_avail, :nodes_used, :nodes_avail,:error_message, :cluster_id, :cluster_title, :nodes_idle, :owner_nodes_used, :owner_nodes_idle, :owner_nodes_avail, :nodes_other, :procs_idle, :procs_other, :owner_procs_used, :owner_procs_idle, :owner_procs_avail, :owner_procs_other, :owner_nodes_other
 
     # assign 0 if the input is nil or empty
     def assign(match_string)

@@ -1,12 +1,12 @@
 <!-- node status progressbar -->
 <% if showqer.nodes_avail > 0 %>
-  <div><%= showqer.nodes_used %> of <%= showqer.available_nodes %> General Nodes Active (<%= showqer.nodes_idle %> Node(s) Free, <%= showqer.nodes_other %> Node(s) Down) </div>
+  <div><%= showqer.nodes_used %> of <%= showqer.available_nodes %> General Nodes Active (<%= showqer.nodes_idle %> Node(s) Free, <%= showqer.nodes_other %> Node(s) Offline) </div>
   <div class="progress">
     <div class="progress-bar" role="progressbar" style="width:<%= showqer.nodes_percent.round(2) %>%">
       <%=(showqer.nodes_percent).round(2) %>%
     </div>
   </div>
-  <div><%= showqer.procs_used %> of <%= showqer.available_procs %> General Processors Active (<%= showqer.procs_idle %> Processors Free, <%= showqer.procs_other %> Processors Down)</div>
+  <div><%= showqer.procs_used %> of <%= showqer.available_procs %> General Processors Active (<%= showqer.procs_idle %> Processors Free, <%= showqer.procs_other %> Processors Offline)</div>
   <div class="progress">
     <div class="progress-bar" role="progressbar" style="width:<%= showqer.procs_percent.round(2) %>%">
       <%= (showqer.procs_percent).round(2) %>%
@@ -14,13 +14,13 @@
   </div>
 <% end %>
 <% if showqer.owner_nodes_avail > 0 %>
-  <div><%= showqer.owner_nodes_used %> of <%= showqer.owner_nodes_avail %> Owner Nodes Active (<%= showqer.owner_nodes_idle %> Nodes Free, <%= showqer.owner_nodes_other %> Node(s) Down) </div>
+  <div><%= showqer.owner_nodes_used %> of <%= showqer.owner_nodes_avail %> Owner Nodes Active (<%= showqer.owner_nodes_idle %> Nodes Free, <%= showqer.owner_nodes_other %> Node(s) Offline) </div>
   <div class="progress">
    <div class="progress-bar" role="progressbar" style="width:<%= showqer.owner_nodes_percent.round(2) %>%">
      <%=(showqer.owner_nodes_percent).round(2) %>%
    </div>
   </div>
-  <div><%= showqer.owner_procs_used %> of <%= showqer.owner_procs_avail %> Owner Processors Active (<%= showqer.owner_procs_idle %> Processors Free, <%= showqer.owner_procs_other %> Processors Down)</div>
+  <div><%= showqer.owner_procs_used %> of <%= showqer.owner_procs_avail %> Owner Processors Active (<%= showqer.owner_procs_idle %> Processors Free, <%= showqer.owner_procs_other %> Processors Offline)</div>
   <div class="progress">
    <div class="progress-bar" role="progressbar" style="width:<%= showqer.owner_procs_percent.round(2) %>%">
      <%= (showqer.owner_procs_percent).round(2) %>%

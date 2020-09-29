@@ -14,14 +14,15 @@ require_relative 'lib/slurm_squeue_client'
 
 # more details see ood_appkit lib/ood_appkit/configuration.rb
 begin
-  CLUSTERS = OodCore::Clusters.new(OodCore::Clusters.load_file(ENV['OOD_CLUSTERS'] || '/etc/ood/config/clusters.d').select(&:job_allow?)
-    .select { |c| c.custom_config[:moab] || c.job_config[:adapter] == "slurm" }
-    .reject { |c| c.metadata.hidden }
-  )
-# attempts at sorting clusters, none of which work
-#  CLUSTERS.sort_by(&:metadata.title)
-  CLUSTERS.sort_by{ |cluster| cluster.metadata.title.downcase }
-#  File.write("/uufs/chpc.utah.edu/common/home/u0101881/ondemand/dev/osc-systemstatus/log.txt", "#{CLUSTERS.inspect}\n", mode: "a")
+# CLUSTERS = OodCore::Clusters.new(OodCore::Clusters.load_file(ENV['OOD_CLUSTERS'] || '/etc/ood/config/clusters.d').select(&:job_allow?)
+#   .select { |c| c.custom_config[:moab] || c.job_config[:adapter] == "slurm" }
+#   .reject { |c| c.metadata.hidden }
+# )
+ CLUSTERS = OodCore::Clusters.new(OodCore::Clusters.load_file(ENV['OOD_CLUSTERS'] || '/etc/ood/config/clusters.d').select(&:job_allow?) 
+   .select { |c| c.custom_config[:moab] || c.job_config[:adapter] == "slurm" } 
+   .reject { |c| c.metadata.hidden } 
+   .sort_by {|cluster| [cluster.metadata.priority.to_i, cluster.id]}
+ ) 
 
 rescue OodCore::ConfigurationNotFound
   CLUSTERS = OodCore::Clusters.new([])
